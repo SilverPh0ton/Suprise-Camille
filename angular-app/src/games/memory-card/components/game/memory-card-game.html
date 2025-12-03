@@ -1,9 +1,10 @@
-<div class="flex flex-col h-screen bg-[url(/background/cottagecore-digital-art.jpg)] bg-no-repeat bg-cover bg-center">
+<div class="flex flex-col h-dvh bg-[url(/background/cottagecore-digital-art.jpg)] bg-no-repeat bg-cover bg-center">
 
   <memory-card-header
     [nbrOfResolvedCards]="memoryCardsStore.nbrOfResolvedCards()"
     [nbrOfAttempt]="memoryCardsStore.nbrOfAttempt()"
     [progressPercentage]="memoryCardsStore.progressPercentage()"
+    (resetGame)="resetGame()"
   />
 
   <div class="flex gap-2 p-2 flex-wrap justify-center content-center grow">

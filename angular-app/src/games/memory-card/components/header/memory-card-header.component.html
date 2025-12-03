@@ -4,11 +4,12 @@
     <p class="w-full flex justify-around font-[New_Tegomin] font-bold text-2xl lg:text-5xl 2xl:text-7xl">
       Jeu d'association
     </p>
+    <i class="pi pi-sync text-4xl" (click)="resetGame.emit()"></i>
   </div>
   <div class="p-4 flex justify-center gap-4 items-center">
     <p-progressbar class="w-full h-8 max-w-[40rem]" color="teal" [value]="progressPercentage()">
       <ng-template #content let-value>
-        <span class="text-white text-xl font-[New_Tegomin]">{{ progressLabel() }}</span>
+        <span class="text-white text-xs lg:text-xl font-[New_Tegomin]">{{ progressLabel() }}</span>
       </ng-template>
     </p-progressbar>
 

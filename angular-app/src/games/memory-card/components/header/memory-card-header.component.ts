@@ -1,4 +1,4 @@
-import {Component, computed, input} from '@angular/core';
+import {Component, computed, input, output} from '@angular/core';
 import {ProgressBar} from 'primeng/progressbar';
 
 @Component({
@@ -14,6 +14,7 @@ export class MemoryCardHeader {
   public nbrOfAttempt = input.required<number>();
   public progressPercentage = input.required<number>();
 
+  public resetGame = output<void>();
 
   protected progressLabel = computed(() =>
     `${this.nbrOfResolvedCards() / 2} pair${this.nbrOfResolvedCards() > 2 ? 's' : ''}`

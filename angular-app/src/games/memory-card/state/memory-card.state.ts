@@ -1,6 +1,6 @@
 import {patchState, signalStore, withComputed, withMethods, withState,} from '@ngrx/signals';
 import {MemoryCardType} from './memory-card.type';
-import {addEntities, updateAllEntities, updateEntity, withEntities} from '@ngrx/signals/entities';
+import {addEntities, setAllEntities, updateAllEntities, updateEntity, withEntities} from '@ngrx/signals/entities';
 import {gameDataFactory} from './game-data';
 import {computed} from '@angular/core';
 
@@ -26,6 +26,11 @@ export const MemoryCardsStore = signalStore(
   withMethods((store) => ({
     initGameData(sources: string[]): void {
       patchState(store, addEntities(gameDataFactory(sources)));
+    },
+    resetGame(sources: string[]): void {
+      patchState(store, setAllEntities(gameDataFactory(sources)));
+      patchState(store, {nbrOfCardFlipped: 0});
+
     },
     flipCard(memoryCard: MemoryCardType): void {
       if (store.nbrOfOpenedCards() > 1) return;
