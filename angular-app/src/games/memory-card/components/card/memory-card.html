@@ -1,12 +1,12 @@
-<button class="relative flex w-28 h-28 lg:w-48 lg:h-48 xl:w-52 xl:h-52 2xl:w-76 2xl:h-76" (click)="flipCard()">
+<button class="relative flex size-28 lg:size-48 2xl:size-76" (click)="flipCard()">
   <img fill [ngSrc]="'assets/card-back.png'" priority alt="Card backing"
        class="tile absolute rounded-md overflow-hidden w-full h-full"
        [class.flipped]="isCardVisible()"/>
 
   <img fill [ngSrc]="src()" [alt]="src()"
-       class="tile absolute border-2 rounded-md w-full h-full"
+       class="tile absolute border-4 rounded-md w-full h-full"
        [class.flipped]="!isCardVisible()"
-       [class.border-black]="!isResolved()"
-       [class.border-green-400]="isResolved()"/>
+       [class.border-transparent]="!isResolved()"
+       [class.border-teal-400]="isResolved()"/>
 </button>
 

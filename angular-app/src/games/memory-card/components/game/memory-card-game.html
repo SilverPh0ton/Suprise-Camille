@@ -1,5 +1,10 @@
 <div class="flex flex-col h-screen bg-[url(/background/cottagecore-digital-art.jpg)] bg-no-repeat bg-cover bg-center">
-  <p class="w-full flex justify-around">memory-card game!</p>
+
+  <memory-card-header
+    [nbrOfResolvedCards]="memoryCardsStore.nbrOfResolvedCards()"
+    [nbrOfAttempt]="memoryCardsStore.nbrOfAttempt()"
+    [progressPercentage]="memoryCardsStore.progressPercentage()"
+  />
 
   <div class="flex gap-2 p-2 flex-wrap justify-center content-center grow">
     @for (card of memoryCardsStore.entities(); track card.id) {
@@ -8,7 +13,8 @@
         [src]="card.src"
         [isFlipped]="card.isOpen"
         [isResolved]="card.isResolved"
-        (cardSelected)="memoryCardsStore.flipCard(card)"/>
+        (cardSelected)="memoryCardsStore.flipCard(card)"
+      />
     }
   </div>
 </div>

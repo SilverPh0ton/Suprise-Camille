@@ -1,14 +1,28 @@
-import {patchState, signalStore, withComputed, withMethods,} from '@ngrx/signals';
+import {patchState, signalStore, withComputed, withMethods, withState,} from '@ngrx/signals';
 import {MemoryCardType} from './memory-card.type';
 import {addEntities, updateAllEntities, updateEntity, withEntities} from '@ngrx/signals/entities';
 import {gameDataFactory} from './game-data';
+import {computed} from '@angular/core';
 
 export const MemoryCardsStore = signalStore(
   withEntities<MemoryCardType>(),
-  withComputed(({entities}) => ({
-    nbrOfOpenedCards: () => entities().filter(card => card.isOpen).length,
-    nbrOfResolvedCards: () => entities().filter(card => card.isResolved).length,
-  })),
+  withState({nbrOfCardFlipped: 0}),
+  withComputed(({entities, nbrOfCardFlipped}) => {
+    const nbrOfCards = computed(() => entities().length);
+    const nbrOfOpenedCards = computed(() => entities().filter(card => card.isOpen).length);
+    const nbrOfResolvedCards = computed(() => entities().filter(card => card.isResolved).length);
+    const progressPercentage = computed(() => Math.round(nbrOfResolvedCards() / nbrOfCards() * 100));
+    const nbrOfAttempt = computed(() => Math.floor(nbrOfCardFlipped() / 2));
+
+    return {
+      nbrOfCards,
+      nbrOfOpenedCards,
+      nbrOfResolvedCards,
+      progressPercentage,
+      nbrOfAttempt
+    }
+
+  }),
   withMethods((store) => ({
     initGameData(sources: string[]): void {
       patchState(store, addEntities(gameDataFactory(sources)));
@@ -35,6 +49,7 @@ export const MemoryCardsStore = signalStore(
           }),
         })
       );
+      patchState(store, {nbrOfCardFlipped: store.nbrOfCardFlipped() + 1});
 
       if (store.nbrOfOpenedCards() > 1) {
         setTimeout(() => {
