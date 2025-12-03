@@ -1,12 +1,12 @@
-<button class="relative w-40 h-40 *:w-full flex" (click)="flipCard()">
-  <div class="tile absolute rounded-md overflow-hidden" [class.flipped]="isCardVisible()">
-    <img width=160 height=160 [ngSrc]="'assets/card-back.jpg'" priority alt="Card backing" class="w-40 h-40"/>
-  </div>
-  <div class="tile absolute border-2 rounded-md"
+<button class="relative flex w-28 h-28 lg:w-48 lg:h-48 xl:w-52 xl:h-52 2xl:w-76 2xl:h-76" (click)="flipCard()">
+  <img fill [ngSrc]="'assets/card-back.png'" priority alt="Card backing"
+       class="tile absolute rounded-md overflow-hidden w-full h-full"
+       [class.flipped]="isCardVisible()"/>
+
+  <img fill [ngSrc]="src()" [alt]="src()"
+       class="tile absolute border-2 rounded-md w-full h-full"
        [class.flipped]="!isCardVisible()"
        [class.border-black]="!isResolved()"
-       [class.border-green-400]="isResolved()">
-    <img width=160 height=160 [ngSrc]="src()" [alt]="src()"/>
-  </div>
+       [class.border-green-400]="isResolved()"/>
 </button>
 

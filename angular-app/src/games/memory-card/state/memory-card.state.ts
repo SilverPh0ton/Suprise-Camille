@@ -39,9 +39,8 @@ export const MemoryCardsStore = signalStore(
       if (store.nbrOfOpenedCards() > 1) {
         setTimeout(() => {
           patchState(store, updateAllEntities({isOpen: false}));
-        }, 1000)
+        }, 700)
       }
     },
-
   }))
 );

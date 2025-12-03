@@ -1,12 +1,15 @@
-<p class="w-full flex justify-around">memory-card game!</p>
+<div class="flex flex-col h-screen bg-[url(/background/cottagecore-digital-art.jpg)] bg-no-repeat bg-cover bg-center">
+  <p class="w-full flex justify-around">memory-card game!</p>
 
-<div class="flex gap-4 flex-wrap justify-around">
-  @for (card of memoryCardsStore.entities(); track card.id) {
-    <memory-card
-      [id]="card.id"
-      [src]="card.src"
-      [isFlipped]="card.isOpen"
-      [isResolved]="card.isResolved"
-      (cardSelected)="memoryCardsStore.flipCard(card)"/>
-  }
+  <div class="flex gap-2 p-2 flex-wrap justify-center content-center grow">
+    @for (card of memoryCardsStore.entities(); track card.id) {
+      <memory-card
+        [id]="card.id"
+        [src]="card.src"
+        [isFlipped]="card.isOpen"
+        [isResolved]="card.isResolved"
+        (cardSelected)="memoryCardsStore.flipCard(card)"/>
+    }
+  </div>
 </div>
+
