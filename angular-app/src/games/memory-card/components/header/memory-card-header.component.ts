@@ -1,10 +1,12 @@
 import {Component, computed, input, output} from '@angular/core';
 import {ProgressBar} from 'primeng/progressbar';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'memory-card-header',
   imports: [
-    ProgressBar
+    ProgressBar,
+    RouterLink
   ],
   templateUrl: './memory-card-header.component.html'
 })
