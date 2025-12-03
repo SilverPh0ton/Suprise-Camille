@@ -1,32 +1,42 @@
 import {MemoryCardType} from './memory-card.type';
 
-export const gameData: MemoryCardType[] = [
-  {
-    id: 1,
-    matchID: 2,
-    src: 'a',
-    isOpen: false,
-    isResolved: false,
-  },
-  {
-    id: 2,
-    matchID: 1,
-    src: 'a',
-    isOpen: false,
-    isResolved: false,
-  },
-  {
-    id: 3,
-    matchID: 4,
-    src: 'b',
-    isOpen: false,
-    isResolved: false,
-  },
-  {
-    id: 4,
-    matchID: 3,
-    src: 'b',
-    isOpen: false,
-    isResolved: false,
+export const gameDataFactory = (sources: string[]): MemoryCardType[] => {
+  const result: MemoryCardType[] = [];
+
+  sources.forEach((src, index) => {
+    result.push(
+      {
+        id: (index * 2),
+        matchID: (index * 2) + 1,
+        src: src,
+        isOpen: false,
+        isResolved: false,
+      },
+      {
+        id: (index * 2) + 1,
+        matchID: (index * 2),
+        src: src,
+        isOpen: false,
+        isResolved: false,
+      }
+    )
+  });
+
+  shuffle(result);
+
+  return result;
+}
+
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array: MemoryCardType[]) {
+  let currentIndex = array.length;
+
+  while (currentIndex != 0) {
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
   }
-]
+}
+

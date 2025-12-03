@@ -1,18 +1,20 @@
 import {patchState, signalStore, withComputed, withMethods,} from '@ngrx/signals';
 import {MemoryCardType} from './memory-card.type';
 import {addEntities, updateAllEntities, updateEntity, withEntities} from '@ngrx/signals/entities';
+import {gameDataFactory} from './game-data';
 
 export const MemoryCardsStore = signalStore(
   withEntities<MemoryCardType>(),
   withComputed(({entities}) => ({
-    nbrOfOpenCards: () => entities().filter(card => card.isOpen).length,
+    nbrOfOpenedCards: () => entities().filter(card => card.isOpen).length,
+    nbrOfResolvedCards: () => entities().filter(card => card.isResolved).length,
   })),
   withMethods((store) => ({
-    initGameData(memoryCards: MemoryCardType[]): void {
-      patchState(store, addEntities(memoryCards));
+    initGameData(sources: string[]): void {
+      patchState(store, addEntities(gameDataFactory(sources)));
     },
     flipCard(memoryCard: MemoryCardType): void {
-      if (store.nbrOfOpenCards() > 1) return;
+      if (store.nbrOfOpenedCards() > 1) return;
 
       const selectedCard = store.entityMap()[memoryCard.id];
       const matchingCard = store.entityMap()[selectedCard.matchID];
@@ -34,7 +36,7 @@ export const MemoryCardsStore = signalStore(
         })
       );
 
-      if (store.nbrOfOpenCards() > 1) {
+      if (store.nbrOfOpenedCards() > 1) {
         setTimeout(() => {
           patchState(store, updateAllEntities({isOpen: false}));
         }, 1000)

@@ -2,8 +2,10 @@
   <div class="tile absolute h-fullbg-slate-100 rounded-md overflow-hidden" [class.flipped]="isCardVisible()">
     <img [src]="'card-back.jpg'"/>
   </div>
-  <div class="tile absolute h-full flex items-center justify-center border-black border-2 rounded-md"
-       [class.flipped]="!isCardVisible()">
+  <div class="tile absolute h-full flex items-center justify-center border-2 rounded-md"
+       [class.flipped]="!isCardVisible()"
+       [class.border-black]="!isResolved()"
+       [class.border-green-400]="isResolved()">
     {{ id() }}|{{ src() }} | {{ isResolved() }}
   </div>
 </button>
