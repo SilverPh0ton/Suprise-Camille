@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {MemoryCard} from '../card/memory-card';
-import {MemoryCardsStore} from '../state/memory-card.state';
+import {MemoryCardsStore} from '../../state/memory-card.state';
 
 @Component({
   selector: 'memory-card-game',

@@ -1,6 +1,6 @@
 <button class="relative w-32 h-44 *:w-full flex" (click)="flipCard()">
   <div class="tile absolute h-fullbg-slate-100 rounded-md overflow-hidden" [class.flipped]="isCardVisible()">
-    <img [src]="'card-back.jpg'"/>
+    <img [src]="'assets/card-back.jpg'"/>
   </div>
   <div class="tile absolute h-full flex items-center justify-center border-2 rounded-md"
        [class.flipped]="!isCardVisible()"
