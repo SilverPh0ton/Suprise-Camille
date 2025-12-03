@@ -14,6 +14,10 @@ export class MemoryCardGame implements OnInit {
   protected memoryCardsStore = inject(MemoryCardsStore);
 
   ngOnInit() {
-    this.memoryCardsStore.initGameData(['a', 'b', 'c']);
+    this.memoryCardsStore.initGameData([
+      'memory-card-img/cat/1.jpg',
+      'memory-card-img/cat/2.jpg',
+      'memory-card-img/cat/3.jpg'
+    ]);
   }
 }

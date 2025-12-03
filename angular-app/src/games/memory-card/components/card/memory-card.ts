@@ -1,14 +1,17 @@
 import {Component, computed, input, output} from '@angular/core';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'memory-card',
-  imports: [],
+  imports: [
+    NgOptimizedImage
+  ],
   templateUrl: './memory-card.html',
   styleUrls: ['./memory-card.css']
 })
 export class MemoryCard {
-  public id = input<number>();
-  public src = input<string>();
+  public id = input.required<number>();
+  public src = input.required<string>();
   public isFlipped = input<boolean>(false);
   public isResolved = input<boolean>(false);
 
