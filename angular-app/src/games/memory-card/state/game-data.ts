@@ -1,6 +1,6 @@
 import {MemoryCardType} from './memory-card.type';
 
-export const gameDataFactory = (sources: string[]): MemoryCardType[] => {
+export const gameDataFactory = (sources: string[], initAlreadyResolved = false): MemoryCardType[] => {
   const result: MemoryCardType[] = [];
 
   sources.forEach((src, index) => {
@@ -10,14 +10,14 @@ export const gameDataFactory = (sources: string[]): MemoryCardType[] => {
         matchID: (index * 2) + 1,
         src: src,
         isOpen: false,
-        isResolved: false,
+        isResolved: initAlreadyResolved,
       },
       {
         id: (index * 2) + 1,
         matchID: (index * 2),
         src: src,
         isOpen: false,
-        isResolved: false,
+        isResolved: initAlreadyResolved,
       }
     )
   });

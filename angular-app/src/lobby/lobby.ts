@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {Button, ButtonLabel} from 'primeng/button';
 import {RouterLink} from '@angular/router';
+import {ProgressStore} from './progress.state';
 
 @Component({
   selector: 'app-lobby',
@@ -12,5 +13,5 @@ import {RouterLink} from '@angular/router';
   templateUrl: './lobby.html',
 })
 export class Lobby {
-
+  protected progressStore = inject(ProgressStore);
 }

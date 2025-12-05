@@ -1,10 +1,12 @@
 import {patchState, signalStore, withComputed, withMethods, withState,} from '@ngrx/signals';
 import {MemoryCardType} from './memory-card.type';
-import {addEntities, setAllEntities, updateAllEntities, updateEntity, withEntities} from '@ngrx/signals/entities';
+import {setAllEntities, updateAllEntities, updateEntity, withEntities} from '@ngrx/signals/entities';
 import {gameDataFactory} from './game-data';
-import {computed} from '@angular/core';
+import {computed, inject} from '@angular/core';
+import {ProgressStore} from '../../../lobby/progress.state';
 
 export const MemoryCardsStore = signalStore(
+  {providedIn: 'root'},
   withEntities<MemoryCardType>(),
   withState({nbrOfCardFlipped: 0}),
   withComputed(({entities, nbrOfCardFlipped}) => {
@@ -13,24 +15,28 @@ export const MemoryCardsStore = signalStore(
     const nbrOfResolvedCards = computed(() => entities().filter(card => card.isResolved).length);
     const progressPercentage = computed(() => Math.round(nbrOfResolvedCards() / nbrOfCards() * 100));
     const nbrOfAttempt = computed(() => Math.floor(nbrOfCardFlipped() / 2));
+    const isComplete = computed(() => progressPercentage() === 100);
 
     return {
       nbrOfCards,
       nbrOfOpenedCards,
       nbrOfResolvedCards,
       progressPercentage,
-      nbrOfAttempt
+      nbrOfAttempt,
+      isComplete
     }
 
   }),
-  withMethods((store) => ({
+  withMethods((store, progressStore = inject(ProgressStore)) => ({
     initGameData(sources: string[]): void {
-      patchState(store, addEntities(gameDataFactory(sources)));
+      const initAlreadyResolved = progressStore.isCurrentTargetUnlocked();
+      patchState(store, setAllEntities(gameDataFactory(sources, initAlreadyResolved)));
+      patchState(store, {nbrOfCardFlipped: 0});
     },
     resetGame(sources: string[]): void {
       patchState(store, setAllEntities(gameDataFactory(sources)));
       patchState(store, {nbrOfCardFlipped: 0});
-
+      progressStore.resetCurrentTarget();
     },
     flipCard(memoryCard: MemoryCardType): void {
       if (store.nbrOfOpenedCards() > 1) return;
@@ -61,6 +67,13 @@ export const MemoryCardsStore = signalStore(
           patchState(store, updateAllEntities({isOpen: false}));
         }, 700)
       }
+
+      if (store.isComplete()) {
+        progressStore.unlockCurrentTarget()
+      }
+    },
+    completeGame(): void {
+      patchState(store, updateAllEntities({isResolved: true}));
     },
   }))
 );
