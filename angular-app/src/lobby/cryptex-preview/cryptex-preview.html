@@ -1,0 +1,61 @@
+<div class="flex justify-center">
+
+  <div class="relative block lg:hidden">
+    @if (progressStore.isFirstLetterUnlocked()) {
+      <img class="absolute top-[53px] left-[78px]" width="15" height="15" [ngSrc]="'assets/lettre1.png'"
+           alt="first letter"/>
+    }
+    @if (progressStore.isSecondLetterUnlocked()) {
+      <img class="absolute top-[53px] left-[113px]" width="15" height="15" [ngSrc]="'assets/lettre2.png'"
+           alt="first letter"/>
+    }
+    @if (progressStore.isThirdLetterUnlocked()) {
+      <img class="absolute top-[53px] left-[148px]" width="15" height="15" [ngSrc]="'assets/lettre3.png'"
+           alt="first letter"/>
+    }
+    @if (progressStore.isFourthLetterUnlocked()) {
+      <img class="absolute top-[53px] left-[182px]" width="15" height="15" [ngSrc]="'assets/lettre4.png'"
+           alt="first letter"/>
+    }
+    @if (progressStore.isFifthLetterUnlocked()) {
+      <img class="absolute top-[53px] left-[217px]" width="15" height="15" [ngSrc]="'assets/lettre5.png'"
+           alt="first letter"/>
+    }
+    @if (progressStore.isSixthLetterUnlocked()) {
+      <img class="absolute top-[53px] left-[250px]" width="15" height="15" [ngSrc]="'assets/lettre6.png'"
+           alt="first letter"/>
+    }
+    <img height="133" width="340" [ngSrc]="'assets/cryptex.webp'" priority alt="Card backing"/>
+  </div>
+
+  <div class="relative hidden lg:block">
+    @if (progressStore.isFirstLetterUnlocked()) {
+      <img class="absolute top-[107px] left-[155px]" width="30" height="30" [ngSrc]="'assets/lettre1.png'"
+           alt="first letter"/>
+    }
+    @if (progressStore.isSecondLetterUnlocked()) {
+      <img class="absolute top-[107px] left-[224px]" width="30" height="30" [ngSrc]="'assets/lettre2.png'"
+           alt="first letter"/>
+    }
+    @if (progressStore.isThirdLetterUnlocked()) {
+      <img class="absolute top-[107px] left-[295px]" width="30" height="30" [ngSrc]="'assets/lettre3.png'"
+           alt="first letter"/>
+    }
+    @if (progressStore.isFourthLetterUnlocked()) {
+      <img class="absolute top-[107px] left-[362px]" width="30" height="30" [ngSrc]="'assets/lettre4.png'"
+           alt="first letter"/>
+    }
+    @if (progressStore.isFifthLetterUnlocked()) {
+      <img class="absolute top-[107px] left-[432px]" width="30" height="30" [ngSrc]="'assets/lettre5.png'"
+           alt="first letter"/>
+    }
+    @if (progressStore.isSixthLetterUnlocked()) {
+      <img class="absolute top-[107px] left-[498px]" width="30" height="30" [ngSrc]="'assets/lettre6.png'"
+           alt="first letter"/>
+    }
+
+    <img height="266" width="680" [ngSrc]="'assets/cryptex.webp'" priority alt="Card backing"/>
+  </div>
+
+</div>
+

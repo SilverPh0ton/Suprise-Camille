@@ -38,8 +38,8 @@ export const MemoryCardsStore = signalStore(
       patchState(store, {nbrOfCardFlipped: 0});
       progressStore.resetCurrentTarget();
     },
-    flipCard(memoryCard: MemoryCardType): void {
-      if (store.nbrOfOpenedCards() > 1) return;
+    flipCard(memoryCard: MemoryCardType): boolean {
+      if (store.nbrOfOpenedCards() > 1) return false;
 
       const selectedCard = store.entityMap()[memoryCard.id];
       const matchingCard = store.entityMap()[selectedCard.matchID];
@@ -70,7 +70,9 @@ export const MemoryCardsStore = signalStore(
 
       if (store.isComplete()) {
         progressStore.unlockCurrentTarget()
+        return true;
       }
+      return false
     },
     completeGame(): void {
       patchState(store, updateAllEntities({isResolved: true}));

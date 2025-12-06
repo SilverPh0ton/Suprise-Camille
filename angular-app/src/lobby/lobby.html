@@ -1,17 +1,18 @@
-<div class="flex flex-col justify-center p-4 gap-8 h-dvh bg-[url(/background/yarn-ball.jpg)] bg-cover">
+<div class="flex flex-col justify-center p-2 gap-4 lg:gap-8 h-dvh bg-[url(/background/yarn-ball.jpg)] bg-cover">
   <p
     class="z-10 w-full flex justify-around font-[New_Tegomin] font-bold text-5xl lg:text-8xl 2xl:text-9xl text-shadow-lg">
     Code Cryptex
   </p>
-  <div class="flex flex-row flex-wrap content-center gap-8">
+
+  <cryptex-preview/>
+
+  <div class="flex flex-row flex-wrap content-center gap-4 lg:gap-8">
     <p-button routerLink="/memory-card/1" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
               (click)="progressStore.setUnlockTarget('letter',0)">
       <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
         1er lettre
       </span>
-      @if (progressStore.isFirstLetterUnlocked()) {
-        <i class="pi pi-check text-4xl"></i>
-      }
+
     </p-button>
 
     <p-button routerLink="/memory-card/2" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
@@ -19,9 +20,7 @@
       <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
         2e lettre
       </span>
-      @if (progressStore.isSecondLetterUnlocked()) {
-        <i class="pi pi-check text-4xl"></i>
-      }
+
     </p-button>
 
     <p-button routerLink="/memory-card/3" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
@@ -29,9 +28,7 @@
       <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
         3e lettre
       </span>
-      @if (progressStore.isThirdLetterUnlocked()) {
-        <i class="pi pi-check text-4xl"></i>
-      }
+
     </p-button>
 
     <p-button routerLink="/memory-card/4" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
@@ -39,9 +36,7 @@
       <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
         4e lettre
       </span>
-      @if (progressStore.isFourthLetterUnlocked()) {
-        <i class="pi pi-check text-4xl"></i>
-      }
+
     </p-button>
 
     <p-button routerLink="/memory-card/5" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
@@ -49,9 +44,7 @@
       <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
         5e lettre
       </span>
-      @if (progressStore.isFifthLetterUnlocked()) {
-        <i class="pi pi-check text-4xl"></i>
-      }
+
     </p-button>
 
     <p-button routerLink="/memory-card/5" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
@@ -59,66 +52,64 @@
       <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
         6e lettre
       </span>
-      @if (progressStore.isSixthLetterUnlocked()) {
-        <i class="pi pi-check text-4xl"></i>
-      }
     </p-button>
   </div>
 
-  <div class="flex flex-row flex-wrap content-center gap-8">
-    <p-button routerLink="/memory-card/5" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
-              [disabled]="!progressStore.areAllLettersUnlocked()"
-              (click)="progressStore.setUnlockTarget('hint',0)">
-      <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
-        Indice 1
-      </span>
-      @if (progressStore.isFirstHintUnlocked()) {
-        <i class="pi pi-check text-4xl"></i>
-      }
-    </p-button>
+  @if (progressStore.areAllLettersUnlocked()) {
+    <div class="flex flex-row flex-wrap content-center gap-4 lg:gap-8">
+      <p-button routerLink="/memory-card/5" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
+                (click)="progressStore.setUnlockTarget('hint',0)">
+        <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
+          Indice 1
+        </span>
+        @if (progressStore.isFirstHintUnlocked()) {
+          <i class="pi pi-check text-4xl"></i>
+        }
+      </p-button>
 
-    <p-button routerLink="/memory-card/5" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
-              [disabled]="!progressStore.areAllLettersUnlocked() || !progressStore.isFirstHintUnlocked()"
-              (click)="progressStore.setUnlockTarget('hint',1)">
-      <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
-        Indice 2
-      </span>
-      @if (progressStore.isSecondHintUnlocked()) {
-        <i class="pi pi-check text-4xl"></i>
-      }
-    </p-button>
+      <p-button routerLink="/memory-card/5" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
+                [disabled]="!progressStore.isFirstHintUnlocked()"
+                (click)="progressStore.setUnlockTarget('hint',1)">
+        <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
+          Indice 2
+        </span>
+        @if (progressStore.isSecondHintUnlocked()) {
+          <i class="pi pi-check text-4xl"></i>
+        }
+      </p-button>
 
-    <p-button routerLink="/memory-card/5" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
-              [disabled]="!progressStore.areAllLettersUnlocked() || !progressStore.isSecondHintUnlocked()"
-              (click)="progressStore.setUnlockTarget('hint',2)">
-      <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
-        Indice 3
-      </span>
-      @if (progressStore.isThirdHintUnlocked()) {
-        <i class="pi pi-check text-4xl"></i>
-      }
-    </p-button>
+      <p-button routerLink="/memory-card/5" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
+                [disabled]="!progressStore.isSecondHintUnlocked()"
+                (click)="progressStore.setUnlockTarget('hint',2)">
+        <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
+          Indice 3
+        </span>
+        @if (progressStore.isThirdHintUnlocked()) {
+          <i class="pi pi-check text-4xl"></i>
+        }
+      </p-button>
 
-    <p-button routerLink="/memory-card/5" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
-              [disabled]="!progressStore.areAllLettersUnlocked() || !progressStore.isThirdHintUnlocked()"
-              (click)="progressStore.setUnlockTarget('hint',3)">
-      <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
-        Indice 4
-      </span>
-      @if (progressStore.isFourthHintUnlocked()) {
-        <i class="pi pi-check text-4xl"></i>
-      }
-    </p-button>
+      <p-button routerLink="/memory-card/5" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
+                [disabled]="!progressStore.isThirdHintUnlocked()"
+                (click)="progressStore.setUnlockTarget('hint',3)">
+        <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
+          Indice 4
+        </span>
+        @if (progressStore.isFourthHintUnlocked()) {
+          <i class="pi pi-check text-4xl"></i>
+        }
+      </p-button>
 
-    <p-button routerLink="/memory-card/5" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
-              [disabled]="!progressStore.areAllLettersUnlocked() || !progressStore.isFourthHintUnlocked()"
-              (click)="progressStore.setUnlockTarget('hint',4)">
-      <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
-        Solution
-      </span>
-      @if (progressStore.isSolutionUnlocked()) {
-        <i class="pi pi-check text-4xl"></i>
-      }
-    </p-button>
-  </div>
+      <p-button routerLink="/memory-card/5" [rounded]="true" fluid class="grow [&>*]:shadow-xl"
+                [disabled]="!progressStore.isFourthHintUnlocked()"
+                (click)="progressStore.setUnlockTarget('hint',4)">
+        <span pButtonLabel class="font-[New_Tegomin] font-bold text-2xl">
+          Solution
+        </span>
+        @if (progressStore.isSolutionUnlocked()) {
+          <i class="pi pi-check text-4xl"></i>
+        }
+      </p-button>
+    </div>
+  }
 </div>
