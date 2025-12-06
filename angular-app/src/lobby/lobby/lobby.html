@@ -1,0 +1,67 @@
+<div class="flex flex-col justify-center p-2 gap-4 lg:gap-8 h-dvh bg-[url(/background/yarn-ball.jpg)] bg-cover">
+  <p
+    class="z-10 w-full flex justify-around font-[New_Tegomin] text-teal-200 font-bold text-5xl lg:text-8xl 2xl:text-9xl text-shadow-lg">
+    Code Cryptex
+  </p>
+
+  <cryptex-preview/>
+
+  <div class="grid grid-cols-2 gap-4 lg:gap-8 mx-auto min-w-80 lg:min-w-3xl">
+    <p-button routerLink="/memory-card/1"
+              fluid
+              (click)="progressStore.setUnlockTarget('letter',0)">
+      <span pButtonLabel class="font-[New_Tegomin]  font-bold text-xl lg:text-2xl">
+        1er lettre
+      </span>
+
+    </p-button>
+
+    <p-button routerLink="/memory-card/2"
+              fluid
+              (click)="progressStore.setUnlockTarget('letter',1)">
+      <span pButtonLabel class="font-[New_Tegomin] font-bold text-xl lg:text-2xl">
+        2e lettre
+      </span>
+
+    </p-button>
+
+    <p-button routerLink="/memory-card/3"
+              fluid
+              (click)="progressStore.setUnlockTarget('letter',2)">
+      <span pButtonLabel class="font-[New_Tegomin] font-bold text-xl lg:text-2xl">
+        3e lettre
+      </span>
+
+    </p-button>
+
+    <p-button routerLink="/memory-card/4"
+              fluid
+              (click)="progressStore.setUnlockTarget('letter',3)">
+      <span pButtonLabel class="font-[New_Tegomin] font-bold text-xl lg:text-2xl">
+        4e lettre
+      </span>
+
+    </p-button>
+
+    <p-button routerLink="/memory-card/5"
+              fluid
+              (click)="progressStore.setUnlockTarget('letter',4)">
+      <span pButtonLabel class="font-[New_Tegomin] font-bold text-xl lg:text-2xl">
+        5e lettre
+      </span>
+
+    </p-button>
+
+    <p-button routerLink="/memory-card/5"
+              fluid
+              (click)="progressStore.setUnlockTarget('letter',5)">
+      <span pButtonLabel class="font-[New_Tegomin] font-bold text-xl lg:text-2xl">
+        6e lettre
+      </span>
+    </p-button>
+  </div>
+
+  @if (progressStore.areAllLettersUnlocked()) {
+    <hint-modal class="mx-auto min-w-80 lg:min-w-3xl"/>
+  }
+</div>

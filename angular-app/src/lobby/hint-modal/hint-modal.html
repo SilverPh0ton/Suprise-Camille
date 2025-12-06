@@ -1,0 +1,121 @@
+<p-button fluid (click)="showDialog()">
+      <span pButtonLabel class="font-[New_Tegomin]  font-bold text-xl lg:text-2xl">
+         Indices pour déchiffrement
+      </span>
+</p-button>
+
+<p-dialog header="Indices" [modal]="true" [(visible)]="visible"
+          class="font-[New_Tegomin]">
+  <div class="flex flex-wrap gap-2">
+    <p-button [icon]="progressStore.isFirstHintUnlocked() ? 'pi pi-lock-open':'pi pi-lock'"
+              label="1" iconPos="top"
+              (click)="progressStore.setUnlockTarget('hint',0)"
+              fluid class="grow" routerLink="/memory-card/5"/>
+
+    <p-button [icon]="progressStore.isSecondHintUnlocked() ? 'pi pi-lock-open':'pi pi-lock'"
+              label="2" icon="pi pi-lock" iconPos="top"
+              fluid class="grow" routerLink="/memory-card/5"
+              (click)="progressStore.setUnlockTarget('hint',1)"
+              [disabled]="!progressStore.isFirstHintUnlocked()"/>
+
+    <p-button [icon]="progressStore.isThirdHintUnlocked() ? 'pi pi-lock-open':'pi pi-lock'"
+              label="3" icon="pi pi-lock" iconPos="top"
+              fluid class="grow" routerLink="/memory-card/5"
+              (click)="progressStore.setUnlockTarget('hint',2)"
+              [disabled]="!progressStore.isSecondHintUnlocked()"/>
+
+    <p-button [icon]="progressStore.isFourthHintUnlocked() ? 'pi pi-lock-open':'pi pi-lock'"
+              label="4" icon="pi pi-lock" iconPos="top"
+              fluid class="grow" routerLink="/memory-card/5"
+              (click)="progressStore.setUnlockTarget('hint',3)"
+              [disabled]="!progressStore.isThirdHintUnlocked()"/>
+
+    <p-button [icon]="progressStore.isSolutionUnlocked() ? 'pi pi-lock-open':'pi pi-lock'"
+              label="Solution" icon="pi pi-lock" iconPos="top"
+              fluid class="w-full grow" routerLink="/memory-card/5"
+              (click)="progressStore.setUnlockTarget('hint',4)"
+              [disabled]="!progressStore.isFourthHintUnlocked()"/>
+  </div>
+
+  <p-accordion [multiple]="true">
+    <p-accordion-panel value="0" [disabled]="!progressStore.isFirstHintUnlocked()">
+      <p-accordion-header> Indice I</p-accordion-header>
+      <p-accordion-content>
+        <p> Il y a 2 déchiffrements à faire </p>
+      </p-accordion-content>
+    </p-accordion-panel>
+    <p-accordion-panel value="1" [disabled]="!progressStore.isSecondHintUnlocked()">
+      <p-accordion-header>Indice II</p-accordion-header>
+      <p-accordion-content>
+        <p> Convertie les lettres en chiffre </p>
+      </p-accordion-content>
+    </p-accordion-panel>
+    <p-accordion-panel value="2" [disabled]="!progressStore.isThirdHintUnlocked()">
+      <p-accordion-header>Indice III</p-accordion-header>
+      <p-accordion-content>
+        <p> Chiffrement de Vigenère </p>
+      </p-accordion-content>
+    </p-accordion-panel>
+
+    <p-accordion-panel value="3" [disabled]="!progressStore.isFourthHintUnlocked()">
+      <p-accordion-header>Indice IV</p-accordion-header>
+      <p-accordion-content>
+        <p> La clé est la même que pour le cryptex </p>
+      </p-accordion-content>
+    </p-accordion-panel>
+    <p-accordion-panel value="4" [disabled]="!progressStore.isSolutionUnlocked()">
+      <p-accordion-header>Solution</p-accordion-header>
+      <p-accordion-content>
+        <p>
+          1. Convertis les symboles en lettres, puis en nombres correspondant à la position de la lettre
+          <br>
+          (A -> 0, B -> 1, …, Z -> 25)
+        </p>        <br>
+        <p>2. Convertis la clé du cryptex de la même manière</p> <br>
+        <p>3. Aligne la clé convertie à répétition sous le texte converti</p> <br>
+        <p>4. Soustrais chaque lettre avec la lettre de la clé alignée sous celle-ci</p> <br>
+        <p>5. Si le résultat est négatif, ajouter 26 à la lettre avant de soustraire</p> <br>
+        <p>Exemple:</p>
+        <p>Clé : BV -> 1-21</p>
+
+        <table class="mt-2 mx-auto">
+          <tr>
+            <td></td>
+            <td class="border p-2">U</td>
+            <td class="border p-2">Z</td>
+            <td class="border p-2">T</td>
+            <td class="border p-2">O</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="border p-2">20</td>
+            <td class="border p-2">25</td>
+            <td class="border p-2">19</td>
+            <td class="border p-2">14 <span class="text-[0.6rem]">(+26)</span></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="border p-2">1</td>
+            <td class="border p-2">21</td>
+            <td class="border p-2">1</td>
+            <td class="border p-2">21</td>
+          </tr>
+          <tr>
+            <td class="border p-2">-</td>
+            <td class="border p-2">19</td>
+            <td class="border p-2">4</td>
+            <td class="border p-2">18</td>
+            <td class="border p-2">19</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="border p-2">T</td>
+            <td class="border p-2">E</td>
+            <td class="border p-2">S</td>
+            <td class="border p-2">T</td>
+          </tr>
+        </table>
+      </p-accordion-content>
+    </p-accordion-panel>
+  </p-accordion>
+</p-dialog>

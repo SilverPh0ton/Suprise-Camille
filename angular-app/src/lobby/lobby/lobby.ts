@@ -1,8 +1,9 @@
 import {Component, inject} from '@angular/core';
 import {Button, ButtonLabel} from 'primeng/button';
 import {RouterLink} from '@angular/router';
-import {ProgressStore} from './progress.state';
-import {CryptexPreview} from './cryptex-preview/cryptex-preview';
+import {ProgressStore} from '../progress.state';
+import {CryptexPreview} from '../cryptex-preview/cryptex-preview';
+import {HintModal} from '../hint-modal/hint-modal';
 
 @Component({
   selector: 'lobby',
@@ -10,7 +11,8 @@ import {CryptexPreview} from './cryptex-preview/cryptex-preview';
     ButtonLabel,
     RouterLink,
     Button,
-    CryptexPreview
+    CryptexPreview,
+    HintModal
   ],
   templateUrl: './lobby.html',
 })
