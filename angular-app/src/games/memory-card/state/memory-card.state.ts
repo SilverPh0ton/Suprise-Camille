@@ -1,6 +1,6 @@
 import {patchState, signalStore, withComputed, withMethods, withState,} from '@ngrx/signals';
 import {setAllEntities, updateAllEntities, updateEntity, withEntities} from '@ngrx/signals/entities';
-import {gameDataFactory} from './game-data';
+import {memoryCardDataFactory} from './game-data';
 import {computed, inject} from '@angular/core';
 import {ProgressStore} from '../../../lobby/progress.state';
 
@@ -38,16 +38,16 @@ export const MemoryCardsStore = signalStore(
   withMethods((store, progressStore = inject(ProgressStore)) => ({
     initGameData(sources: string[]): void {
       const initAlreadyResolved = progressStore.isCurrentTargetUnlocked();
-      patchState(store, setAllEntities(gameDataFactory(sources, initAlreadyResolved)));
+      patchState(store, setAllEntities(memoryCardDataFactory(sources, initAlreadyResolved)));
       patchState(store, {nbrOfCardFlipped: 0});
     },
     resetGame(sources: string[]): void {
-      patchState(store, setAllEntities(gameDataFactory(sources)));
+      patchState(store, setAllEntities(memoryCardDataFactory(sources)));
       patchState(store, {nbrOfCardFlipped: 0});
       progressStore.resetCurrentTarget();
     },
-    flipCard(memoryCard: MemoryCardType): boolean {
-      if (store.nbrOfOpenedCards() > 1) return false;
+    flipCard(memoryCard: MemoryCardType) {
+      if (store.nbrOfOpenedCards() > 1) return;
 
       const selectedCard = store.entityMap()[memoryCard.id];
       const matchingCard = store.entityMap()[selectedCard.matchID];
@@ -78,9 +78,7 @@ export const MemoryCardsStore = signalStore(
 
       if (store.isComplete()) {
         progressStore.unlockCurrentTarget()
-        return true;
       }
-      return false
     },
     completeGame(): void {
       patchState(store, updateAllEntities({isResolved: true}));

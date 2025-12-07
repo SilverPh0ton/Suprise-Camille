@@ -21,31 +21,31 @@ export class HintModal implements OnInit {
 
   protected hintLinks = computed(() => [
     {
-      routerLink: '/memory-card/1',
+      routerLink: '/word-scramble/4',
       label: '1',
       isResolved: this.progressStore.isFirstHintUnlocked(),
       isEnabled: true
     },
     {
-      routerLink: '/memory-card/2',
+      routerLink: '/memory-card/4',
       label: '2',
       isResolved: this.progressStore.isSecondHintUnlocked(),
       isEnabled: this.progressStore.isFirstHintUnlocked()
     },
     {
-      routerLink: '/memory-card/3',
+      routerLink: '/word-scramble/5',
       label: '3',
       isResolved: this.progressStore.isThirdHintUnlocked(),
       isEnabled: this.progressStore.isSecondHintUnlocked()
     },
     {
-      routerLink: '/memory-card/4',
+      routerLink: '/memory-card/5',
       label: '4',
       isResolved: this.progressStore.isFourthHintUnlocked(),
       isEnabled: this.progressStore.isThirdHintUnlocked()
     },
     {
-      routerLink: '/memory-card/5',
+      routerLink: '/word-scramble/6',
       label: 'Solution',
       isResolved: this.progressStore.isSolutionUnlocked(),
       isEnabled: this.progressStore.isFourthHintUnlocked()

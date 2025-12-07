@@ -1,0 +1,41 @@
+<div class="flex flex-col h-dvh bg-[url(/background/cottagecore-digital-art2.jpg)] bg-repeat bg-center">
+  <game-header
+    title="Mots mélangés"
+    progressLabelBase="mot"
+    [nbrOfItemsResolved]="wordScrambleStore.currentIndex()"
+    [nbrOfAttempt]="wordScrambleStore.nbrOfAttempt()"
+    [progressPercentage]="wordScrambleStore.progressPercentage()"
+    (resetGame)="resetGame()"/>
+
+  <div class="flex flex-col mx-4 lg:mx-auto my-auto p-4 gap-4 items-center bg-gray-500/75 rounded">
+    @if (wordScrambleStore.isComplete()) {
+      <p-button label="Revenir à l'accueil" size="large" routerLink="/"/>
+      <p-button label="Recommencer" size="large" (click)="resetGame()"/>
+    } @else {
+      <p class="text-center text-2xl lg:text-4xl font-[New_Tegomin] text-bold text-white">
+        Réorganise les lettres dans le bon ordre
+      </p>
+
+      <p class="text-center text-xl lg:text-3xl font-[New_Tegomin] text-bold text-white">
+        Catégorie: {{ currentCategory() }}
+      </p>
+
+      <span class="text-center text-3xl lg:text-5xl font-[New_Tegomin] font-bold text-white">
+      {{ formatedQuestion() }}
+    </span>
+
+      <input class="text-xl lg:text-4xl font-[New_Tegomin] font-bold" type="text" pInputText
+             [(ngModel)]="value" [invalid]="wrongAnswer()" (keyup.enter)="submit()"
+             [maxlength]="wordScrambleStore.currentQuestion().length"/>
+
+      @if (wrongAnswer()) {
+        <small class="text-xl text-red-200 font-bold">Mauvaise réponse</small>
+      }
+
+      <p-button label="Vérifié" size="large" (click)="submit()" [disabled]="!isGuessLongEnough()"/>
+    }
+  </div>
+
+
+</div>
+

@@ -6,7 +6,7 @@ import {
   Routes,
   UrlTree
 } from '@angular/router';
-import {WordScramble} from '../games/word-scramble/word-scramble';
+import {WordScrambleGame} from '../games/word-scramble/components/game/word-scramble-game.component';
 import {MemoryCardGame} from '../games/memory-card/components/game/memory-card-game';
 import {Lobby} from '../lobby/lobby/lobby';
 import {inject} from '@angular/core';
@@ -23,5 +23,5 @@ export const targetSelectedGuard: CanActivateChildFn = (childRoute: ActivatedRou
 export const routes: Routes = [
   {path: '', component: Lobby},
   {path: 'memory-card/:set', canActivate: [targetSelectedGuard], component: MemoryCardGame},
-  {path: 'word-scramble', canActivate: [targetSelectedGuard], component: WordScramble},
+  {path: 'word-scramble/:set', canActivate: [targetSelectedGuard], component: WordScrambleGame},
 ];

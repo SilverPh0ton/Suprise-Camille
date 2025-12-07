@@ -1,8 +1,8 @@
-<div class="bg-gray-500/25">
+<div class="bg-gray-500/75">
   <div class="flex items-center p-4">
     <a routerLink="/" class="pi pi-caret-left text-4xl text-white" (click)="messageService.clear()"></a>
     <p class="w-full flex justify-around font-[New_Tegomin] text-white font-bold text-2xl lg:text-5xl 2xl:text-7xl">
-      Jeu d'association
+      {{ title() }}
     </p>
     <i class="pi pi-sync text-4xl text-white" (click)="resetGame.emit(); messageService.clear()"></i>
   </div>

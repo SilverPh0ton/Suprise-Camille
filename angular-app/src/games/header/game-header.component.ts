@@ -4,24 +4,27 @@ import {RouterLink} from '@angular/router';
 import {MessageService} from 'primeng/api';
 
 @Component({
-  selector: 'memory-card-header',
+  selector: 'game-header',
   imports: [
     ProgressBar,
     RouterLink
   ],
-  templateUrl: './memory-card-header.component.html'
+  templateUrl: './game-header.component.html'
 })
-export class MemoryCardHeader {
+export class GameHeader {
   protected messageService = inject(MessageService)
 
-  public nbrOfResolvedCards = input.required<number>();
+  public title = input.required<string>();
+  public progressLabelBase = input.required<string>();
+
+  public nbrOfItemsResolved = input.required<number>();
   public nbrOfAttempt = input.required<number>();
   public progressPercentage = input.required<number>();
 
   public resetGame = output<void>();
 
   protected progressLabel = computed(() =>
-    `${this.nbrOfResolvedCards() / 2} pair${this.nbrOfResolvedCards() > 2 ? 's' : ''}`
+    `${this.nbrOfItemsResolved()} ${this.progressLabelBase()}${this.nbrOfItemsResolved() > 1 ? 's' : ''}`
   );
 
   protected attemptLabel = computed(() =>

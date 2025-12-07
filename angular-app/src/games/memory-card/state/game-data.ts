@@ -1,7 +1,7 @@
 import {MemoryCardType} from './memory-card.state';
 import {shuffleArray} from '../../../utils/suffle';
 
-export const gameDataFactory = (sources: string[], initAlreadyResolved = false): MemoryCardType[] => {
+export const memoryCardDataFactory = (sources: string[], initAlreadyResolved = false): MemoryCardType[] => {
   const result: MemoryCardType[] = [];
 
   sources.forEach((src, index) => {

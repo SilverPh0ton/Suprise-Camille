@@ -1,14 +1,14 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {MemoryCard} from '../card/memory-card';
 import {MemoryCardsStore} from '../../state/memory-card.state';
-import {MemoryCardHeader} from '../header/memory-card-header.component';
 import {ActivatedRoute} from '@angular/router';
+import {GameHeader} from '../../../header/game-header.component';
 
 @Component({
   selector: 'memory-card-game',
   imports: [
     MemoryCard,
-    MemoryCardHeader
+    GameHeader
   ],
   providers: [MemoryCardsStore],
   templateUrl: './memory-card-game.html'

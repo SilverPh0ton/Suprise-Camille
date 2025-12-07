@@ -21,10 +21,10 @@ export class Lobby {
 
   protected gameLinks = computed(() => [
     {routerLink: '/memory-card/1', label: '1er lettre', isResolved: this.progressStore.isFirstLetterUnlocked()},
-    {routerLink: '/memory-card/2', label: '2e lettre', isResolved: this.progressStore.isSecondLetterUnlocked()},
-    {routerLink: '/memory-card/3', label: '3e lettre', isResolved: this.progressStore.isThirdLetterUnlocked()},
-    {routerLink: '/memory-card/4', label: '4e lettre', isResolved: this.progressStore.isFourthLetterUnlocked()},
-    {routerLink: '/memory-card/5', label: '5e lettre', isResolved: this.progressStore.isFifthLetterUnlocked()},
-    {routerLink: '/memory-card/5', label: '6e lettre', isResolved: this.progressStore.isSixthLetterUnlocked()},
+    {routerLink: '/word-scramble/1', label: '2e lettre', isResolved: this.progressStore.isSecondLetterUnlocked()},
+    {routerLink: '/memory-card/2', label: '3e lettre', isResolved: this.progressStore.isThirdLetterUnlocked()},
+    {routerLink: '/word-scramble/2', label: '4e lettre', isResolved: this.progressStore.isFourthLetterUnlocked()},
+    {routerLink: '/memory-card/3', label: '5e lettre', isResolved: this.progressStore.isFifthLetterUnlocked()},
+    {routerLink: '/word-scramble/4', label: '6e lettre', isResolved: this.progressStore.isSixthLetterUnlocked()},
   ]);
 }
