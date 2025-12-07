@@ -1,6 +1,7 @@
-import {Component, computed, input, output} from '@angular/core';
+import {Component, computed, inject, input, output} from '@angular/core';
 import {ProgressBar} from 'primeng/progressbar';
 import {RouterLink} from '@angular/router';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'memory-card-header',
@@ -11,6 +12,7 @@ import {RouterLink} from '@angular/router';
   templateUrl: './memory-card-header.component.html'
 })
 export class MemoryCardHeader {
+  protected messageService = inject(MessageService)
 
   public nbrOfResolvedCards = input.required<number>();
   public nbrOfAttempt = input.required<number>();

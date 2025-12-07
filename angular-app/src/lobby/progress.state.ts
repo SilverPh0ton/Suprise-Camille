@@ -1,5 +1,8 @@
 import {getState, patchState, signalStore, withComputed, withHooks, withMethods, withState} from '@ngrx/signals';
-import {effect} from '@angular/core';
+import {effect, inject} from '@angular/core';
+import {MessageService} from 'primeng/api';
+
+const code = ['R', 'L', 'S', 'P', 'O', 'J'];
 
 type ProgressState = {
   lettersUnlocked: boolean[];
@@ -32,6 +35,7 @@ export const ProgressStore = signalStore(
     isThirdHintUnlocked: () => unlockedHint() >= 2,
     isFourthHintUnlocked: () => unlockedHint() >= 3,
     isSolutionUnlocked: () => unlockedHint() >= 4,
+    hasTarget: () => !!unlockTarget(),
     isCurrentTargetUnlocked: () => {
       const target = unlockTarget();
       if (!target) return false;
@@ -43,7 +47,7 @@ export const ProgressStore = signalStore(
       return false
     }
   })),
-  withMethods((store) => ({
+  withMethods((store, messageService = inject(MessageService)) => ({
     setUnlockTarget(type: 'letter' | 'hint', index: number): void {
       if (type === 'letter' && (index < 0 || index > 5))
         throw new Error('Invalid letter index');
@@ -62,8 +66,23 @@ export const ProgressStore = signalStore(
         const lettersUnlocked = [...store.lettersUnlocked()]
         lettersUnlocked[unlockTarget.index] = true;
         patchState(store, {lettersUnlocked});
+
+        messageService.add({
+          severity: 'custom',
+          summary: 'Félicitation',
+          detail: `Nouvelle lettre déverrouillé : ${code[unlockTarget.index]}`,
+          sticky: true
+        });
+
       } else if (unlockTarget.type === 'hint') {
         patchState(store, {unlockedHint: unlockTarget.index});
+
+        messageService.add({
+          severity: 'custom',
+          summary: 'Félicitation',
+          detail: `Nouvelle indice déverrouillé`,
+          sticky: true
+        });
       }
     },
     resetCurrentTarget(): void {

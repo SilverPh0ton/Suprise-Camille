@@ -5,6 +5,7 @@ import {provideAnimationsAsync} from '@angular/platform-browser/animations/async
 import {providePrimeNG} from 'primeng/config';
 import Aura from '@primeuix/themes/aura'; // Aura, Material, Lara and Nora
 import {definePreset} from '@primeuix/themes';
+import {MessageService} from 'primeng/api';
 
 const MyPreset = definePreset(Aura, {
   semantic: {
@@ -31,6 +32,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideAnimationsAsync(),
+    MessageService,
     providePrimeNG({
       theme: {
         preset: MyPreset,
@@ -44,5 +46,3 @@ export const appConfig: ApplicationConfig = {
     })
   ]
 };
-
-// RLSPOJ

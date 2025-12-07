@@ -1,0 +1,12 @@
+<p-toast position="center" [breakpoints]="{ '920px': { width: '90%'} }">
+  <ng-template let-message #headless let-closeFn="closeFn">
+    <div class="flex flex-col p-4 gap-4 w-full bg-teal-400 rounded-xl">
+      <span class="font-bold text-xl text-white dark:text-black">{{ message.summary }}</span>
+      <span class="font-bold text-base text-white dark:text-black">{{ message.detail }}</span>
+      <div class="flex gap-4 justify-end">
+        <p-button label="Revenir à l'accueil" severity="info" routerLink="/" (click)="closeFn($event)"/>
+        <p-button label="Fermer" severity="danger" (click)="closeFn($event)"/>
+      </div>
+    </div>
+  </ng-template>
+</p-toast>
