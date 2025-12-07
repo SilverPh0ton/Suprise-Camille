@@ -1,9 +1,17 @@
 import {patchState, signalStore, withComputed, withMethods, withState,} from '@ngrx/signals';
-import {MemoryCardType} from './memory-card.type';
 import {setAllEntities, updateAllEntities, updateEntity, withEntities} from '@ngrx/signals/entities';
 import {gameDataFactory} from './game-data';
 import {computed, inject} from '@angular/core';
 import {ProgressStore} from '../../../lobby/progress.state';
+
+export type MemoryCardType = {
+  id: number;
+  matchID: number;
+  src: string;
+  isOpen: boolean;
+  isResolved: boolean;
+}
+
 
 export const MemoryCardsStore = signalStore(
   {providedIn: 'root'},
