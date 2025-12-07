@@ -46,8 +46,28 @@ export class WordScrambleGame implements OnInit {
     this.categoryMap[this.setId]
   );
 
-  protected formatedQuestion = computed(() =>
-    this.wordScrambleStore.currentQuestion().toUpperCase().split('').join('  ')
+  protected scrambleLetters = computed(() => {
+      const answerLetter = this.wordScrambleStore.currentQuestion().split('');
+      let typedLetter = this.value().toLowerCase().split('');
+
+      return answerLetter.map((letter: string) => {
+        const matchingIndex = typedLetter.indexOf(letter);
+        if (matchingIndex === -1) {
+          return {
+            letter: letter.toUpperCase(),
+            isTyped: false
+          }
+        } else {
+          typedLetter.splice(matchingIndex, 1);
+          return {
+            letter: letter.toUpperCase(),
+            isTyped: true
+          }
+        }
+      })
+
+      //return this.wordScrambleStore.currentQuestion().toUpperCase().split('').join('  ')
+    }
   );
 
   protected isGuessLongEnough = computed(() =>
