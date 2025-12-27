@@ -21,7 +21,9 @@
       <p-accordion-panel [value]="$index" [disabled]="!hintContent.isEnabled">
         <p-accordion-header> {{ hintContent.header }}</p-accordion-header>
         <p-accordion-content>
-          <p> {{ hintContent.content }} </p>
+          @if (hintContent.isEnabled) {
+            <p> {{ hintContent.content }} </p>
+          }
         </p-accordion-content>
       </p-accordion-panel>
     }

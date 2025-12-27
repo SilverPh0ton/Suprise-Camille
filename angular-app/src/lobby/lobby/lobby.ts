@@ -25,6 +25,6 @@ export class Lobby {
     {routerLink: '/memory-card/2', label: '3e lettre', isResolved: this.progressStore.isThirdLetterUnlocked()},
     {routerLink: '/word-scramble/2', label: '4e lettre', isResolved: this.progressStore.isFourthLetterUnlocked()},
     {routerLink: '/memory-card/3', label: '5e lettre', isResolved: this.progressStore.isFifthLetterUnlocked()},
-    {routerLink: '/word-scramble/4', label: '6e lettre', isResolved: this.progressStore.isSixthLetterUnlocked()},
+    {routerLink: '/word-scramble/3', label: '6e lettre', isResolved: this.progressStore.isSixthLetterUnlocked()},
   ]);
 }
