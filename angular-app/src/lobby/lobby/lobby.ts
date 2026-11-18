@@ -1,4 +1,4 @@
-import {Component, computed, inject} from '@angular/core';
+import {Component, computed, inject, ChangeDetectionStrategy} from '@angular/core';
 import {Button, ButtonLabel} from 'primeng/button';
 import {RouterLink} from '@angular/router';
 import {ProgressStore} from '../progress.state';
@@ -14,6 +14,7 @@ import {HintModal} from '../hint-modal/hint-modal';
     CryptexPreview,
     HintModal
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './lobby.html',
 })
 export class Lobby {

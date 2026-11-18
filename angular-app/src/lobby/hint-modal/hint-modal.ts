@@ -1,4 +1,4 @@
-import {Component, computed, effect, inject, OnInit, signal} from '@angular/core';
+import {Component, computed, effect, inject, OnInit, signal, ChangeDetectionStrategy} from '@angular/core';
 import {Accordion, AccordionContent, AccordionHeader, AccordionPanel} from 'primeng/accordion';
 import {Dialog} from 'primeng/dialog';
 import {Button, ButtonLabel} from 'primeng/button';
@@ -12,6 +12,7 @@ import {RouterLink} from '@angular/router';
     AccordionContent,
     Accordion,
     Dialog, Button, ButtonLabel, RouterLink,],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './hint-modal.html',
 })
 export class HintModal implements OnInit {

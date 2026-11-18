@@ -1,4 +1,4 @@
-import {Component, computed, inject, input, output} from '@angular/core';
+import {Component, computed, inject, input, output, ChangeDetectionStrategy} from '@angular/core';
 import {ProgressBar} from 'primeng/progressbar';
 import {RouterLink} from '@angular/router';
 import {MessageService} from 'primeng/api';
@@ -9,6 +9,7 @@ import {MessageService} from 'primeng/api';
     ProgressBar,
     RouterLink
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './game-header.component.html'
 })
 export class GameHeader {

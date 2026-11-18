@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {Button} from 'primeng/button';
 import {RouterLink} from '@angular/router';
 import {Toast} from 'primeng/toast';
@@ -10,6 +10,7 @@ import {Toast} from 'primeng/toast';
     RouterLink,
     Toast
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './custom-toast.component.html'
 })
 export class CustomToast {

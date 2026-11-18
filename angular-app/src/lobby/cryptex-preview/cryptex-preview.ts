@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, ChangeDetectionStrategy} from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
 import {ProgressStore} from '../progress.state';
 
@@ -7,6 +7,7 @@ import {ProgressStore} from '../progress.state';
   imports: [
     NgOptimizedImage
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './cryptex-preview.html'
 })
 export class CryptexPreview {

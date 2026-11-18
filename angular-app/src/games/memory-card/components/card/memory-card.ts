@@ -1,4 +1,4 @@
-import {Component, computed, input, output} from '@angular/core';
+import {Component, computed, input, output, ChangeDetectionStrategy} from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
 
 @Component({
@@ -7,6 +7,7 @@ import {NgOptimizedImage} from '@angular/common';
     NgOptimizedImage
   ],
   templateUrl: './memory-card.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./memory-card.css']
 })
 export class MemoryCard {

@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {MemoryCard} from '../card/memory-card';
 import {MemoryCardsStore} from '../../state/memory-card.state';
 import {ActivatedRoute} from '@angular/router';
@@ -11,6 +11,7 @@ import {GameHeader} from '../../../header/game-header.component';
     GameHeader
   ],
   providers: [MemoryCardsStore],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './memory-card-game.html'
 })
 export class MemoryCardGame implements OnInit {

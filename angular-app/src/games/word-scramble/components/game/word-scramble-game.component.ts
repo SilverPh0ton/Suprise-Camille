@@ -1,4 +1,4 @@
-import {Component, computed, inject, OnInit, signal} from '@angular/core';
+import {Component, computed, inject, OnInit, signal, ChangeDetectionStrategy} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {InputText} from 'primeng/inputtext';
 import {Button} from 'primeng/button';
@@ -15,6 +15,7 @@ import {GameHeader} from '../../../header/game-header.component';
     RouterLink,
     GameHeader
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './word-scramble-game.component.html'
 })
 export class WordScrambleGame implements OnInit {
