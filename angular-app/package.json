@@ -29,22 +29,22 @@
     "@angular/forms": "^21.2.26",
     "@angular/platform-browser": "^21.2.26",
     "@angular/router": "^21.2.26",
-    "@ngrx/signals": "^20.1.0",
-    "@primeuix/themes": "^2.0.1",
-    "firebase": "^12.6.0",
-    "primeicons": "^7.0.0",
-    "primeng": "^20.3.0",
+    "@ngrx/signals": "^21.1.1",
+    "@primeuix/themes": "^3.1.1",
+    "firebase": "^13.4.0",
+    "primeicons": "^8.0.2",
+    "primeng": "^21.1.10",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.9.1"
   },
   "devDependencies": {
     "@angular/build": "^21.2.30",
     "@angular/cli": "^21.2.30",
     "@angular/compiler-cli": "^21.2.26",
-    "@tailwindcss/postcss": "^4.1.12",
-    "jsdom": "^27.1.0",
+    "@tailwindcss/postcss": "^4.3.5",
+    "jsdom": "^31.0.1",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.12",
+    "tailwindcss": "^4.3.5",
     "typescript": "~5.9.2",
     "vitest": "^4.1.12"
   }
